@@ -186,21 +186,34 @@ def user_stats(df):
     print("\nThis took {:.3f} seconds.".format(time.time() - start_time))
     print('-'*40)
 
+def user_input_yes_no(msg):
+    """
+    Reads user answer to  and returns either 'yes' or 'no'.
+    Answers other than 'yes' or 'no' is not allowed.
+
+    Args:
+        (str) msg - String containing prompt for user
+    Returns:
+        user_input: 'yes' or 'no'. Other answers is not allowed
+    """
+    user_input = input(msg).lower()
+    while (user_input != 'yes') and (user_input != 'no'):
+        print('Incorrect answer. Please enter yes or no.\n')
+        user_input = input(msg).lower()
+    return user_input
 
 def print_raw_data(df):
     """Displays raw data in pages of 5 lines."""
     num_of_records = df.shape[0]
 
     try:
-        raw_data = input('\nWould you like to see raw data? Enter yes or no.\n').lower()
         pos = 0
-        while raw_data == 'yes':
+        while user_input_yes_no('\nWould you like to see raw data? Enter yes or no.\n') == 'yes':
             print(df.iloc[pos:pos+5, 0:9])
             pos += 5
             if pos >= num_of_records:
                 print('\n{} rows of {} was shown.\nNo more raw data to display.\n'.format(num_of_records, num_of_records))
                 break
-            raw_data = input('\n{} rows of {} was shown.\nDo you want to see more? Enter yes or no.\n'.format(pos, num_of_records)).lower()
 
     except EOFError:
         print('Goodbye!')
@@ -221,11 +234,7 @@ def main():
             else:
                 print('\nNo data to analyze!\n')
 
-            restart = input('\nWould you like to restart? Enter yes or no.\n')
-            while (restart.lower() != 'yes') and (restart.lower() != 'no'):
-                print('Incorrect answer. Please enter yes or no.\n')
-                restart = input('\nWould you like to restart? Enter yes or no.\n')
-            if restart.lower() != 'yes':
+            if user_input_yes_no('\nWould you like to restart? Enter yes or no.\n') != 'yes':
                 break
     except:
         print('Application terminated!')
