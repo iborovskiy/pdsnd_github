@@ -21,7 +21,7 @@ This script works with data in csv-file format provided by Motivate for thee lar
 
 
 _These files must be present in working directory:_
-- shicago.csv
+- chicago.csv
 - new_york_city.csv
 - washington.csv
 
