@@ -1,17 +1,25 @@
->**Note**: Please **fork** the current Udacity repository so that you will have a **remote** repository in **your** Github account. Clone the remote repository to your local machine. Later, as a part of the project "Post your Work on Github", you will push your proposed changes to the remote repository in your Github account.
-
 ### Date created
-Include the date you created this project and README file.
+2022-07-11
 
 ### Project Title
-Replace the Project Title
+Explore US Bikeshare Data
 
 ### Description
-Describe what your project is about and what it does
+This Python script imports data provided by Motivate (bike share system provider for many major US cities), calculates descriptive statistics about usage patterns, and provides interactive experience in the terminal
+to present these statistics.
+
 
 ### Files used
-Include the files used
+This script works with data in csv-file format provided by Motivate for thee large US cities: Chicago, New York City and Washington.
+
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
 
+**This entire project is based on learning materials from Udacity:**
+https://learn.udacity.com/
+
+Raw bike share usage data provided by Motivate:
+https://www.motivateco.com/
+
+Template for this project is forked from Udacity project:
+https://github.com/udacity/pdsnd_github
