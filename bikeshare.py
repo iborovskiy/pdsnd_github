@@ -1,12 +1,12 @@
 import time
 import pandas as pd
-import numpy as np
 
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
-months = ['january', 'february', 'march', 'april', 'may', 'june']
+months = ['january', 'february', 'march', 'april', 'may', 'june', 'all']
+dow_names = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']
 
 def get_filters():
     """
@@ -27,14 +27,12 @@ def get_filters():
             city = input("Enter city (Chicago, New York City, Washington): ").lower()
 
         # get user input for month (all, january, february, ... , june)
-        month_names = ['january', 'february', 'march', 'april', 'may', 'june', 'all']
         month = input("Please enter the month to filter by (January - June, 'all' for no filter): ").lower()
-        while month not in month_names:
+        while month not in months:
             print('Incorrect input value:(')
             month = input("Please enter the month to filter by (January - June, 'all' for no filter): ").lower()
 
         # get user input for day of week (all, monday, tuesday, ... sunday)
-        dow_names = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']
         day = input("Please enter the day of the week to filter by (Monday - Sunday, 'all' for no filter): ").lower()
         while day not in dow_names:
             print('Incorrect input name:(')
@@ -186,21 +184,34 @@ def user_stats(df):
     print("\nThis took {:.3f} seconds.".format(time.time() - start_time))
     print('-'*40)
 
+def user_input_yes_no(msg):
+    """
+    Reads user answer to  and returns either 'yes' or 'no'.
+    Answers other than 'yes' or 'no' is not allowed.
+
+    Args:
+        (str) msg - String containing prompt for user
+    Returns:
+        user_input: 'yes' or 'no'. Other answers is not allowed
+    """
+    user_input = input(msg).lower()
+    while (user_input != 'yes') and (user_input != 'no'):
+        print('Incorrect answer. Please enter yes or no.\n')
+        user_input = input(msg).lower()
+    return user_input
 
 def print_raw_data(df):
     """Displays raw data in pages of 5 lines."""
     num_of_records = df.shape[0]
 
     try:
-        raw_data = input('\nWould you like to see raw data? Enter yes or no.\n').lower()
         pos = 0
-        while raw_data == 'yes':
+        while user_input_yes_no('\nWould you like to see raw data? Enter yes or no.\n') == 'yes':
             print(df.iloc[pos:pos+5, 0:9])
             pos += 5
             if pos >= num_of_records:
                 print('\n{} rows of {} was shown.\nNo more raw data to display.\n'.format(num_of_records, num_of_records))
                 break
-            raw_data = input('\n{} rows of {} was shown.\nDo you want to see more? Enter yes or no.\n'.format(pos, num_of_records)).lower()
 
     except EOFError:
         print('Goodbye!')
@@ -221,11 +232,7 @@ def main():
             else:
                 print('\nNo data to analyze!\n')
 
-            restart = input('\nWould you like to restart? Enter yes or no.\n')
-            while (restart.lower() != 'yes') and (restart.lower() != 'no'):
-                print('Incorrect answer. Please enter yes or no.\n')
-                restart = input('\nWould you like to restart? Enter yes or no.\n')
-            if restart.lower() != 'yes':
+            if user_input_yes_no('\nWould you like to restart? Enter yes or no.\n') != 'yes':
                 break
     except:
         print('Application terminated!')
