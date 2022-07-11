@@ -20,6 +20,24 @@ to present these statistics.
 This script works with data in csv-file format provided by Motivate for thee large US cities: Chicago, New York City and Washington.
 
 
+_These files must be present in working directory:_
+- shicago.csv
+- new_york_city.csv
+- washington.csv
+
+_Mandatory columns in csv files:_
+- Start Time
+- End Time
+- Trip Duration
+- Start Station
+- End Station
+- User Type
+
+_Optional columns in csv files:_
+- Gender
+- Birth Year
+
+
 ### Credits
 
 **This entire project is based on learning materials from Udacity:**
