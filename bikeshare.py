@@ -6,7 +6,8 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
-months = ['january', 'february', 'march', 'april', 'may', 'june']
+months = ['january', 'february', 'march', 'april', 'may', 'june', 'all']
+dow_names = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']
 
 def get_filters():
     """
@@ -27,14 +28,12 @@ def get_filters():
             city = input("Enter city (Chicago, New York City, Washington): ").lower()
 
         # get user input for month (all, january, february, ... , june)
-        month_names = ['january', 'february', 'march', 'april', 'may', 'june', 'all']
         month = input("Please enter the month to filter by (January - June, 'all' for no filter): ").lower()
-        while month not in month_names:
+        while month not in months:
             print('Incorrect input value:(')
             month = input("Please enter the month to filter by (January - June, 'all' for no filter): ").lower()
 
         # get user input for day of week (all, monday, tuesday, ... sunday)
-        dow_names = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']
         day = input("Please enter the day of the week to filter by (Monday - Sunday, 'all' for no filter): ").lower()
         while day not in dow_names:
             print('Incorrect input name:(')
