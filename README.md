@@ -9,6 +9,13 @@ This Python script imports data provided by Motivate (bike share system provider
 to present these statistics.
 
 
+### Installation instructions
+1. Install Python (latest version can be downloaded from www.python.org)
+2. Copy **bikeshare.py** file to your working directory
+3. Copy or create bike share usage data files in **.csv** format (_see notes below_)
+4. Run **bikeshare.py** in python interpreter to start interactive experience
+
+
 ### Files used
 This script works with data in csv-file format provided by Motivate for thee large US cities: Chicago, New York City and Washington.
 
